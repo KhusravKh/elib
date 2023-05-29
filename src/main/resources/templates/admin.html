@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<div th:replace="header.html"></div>
+
+<div class="snippet-container" style="padding-top: 20px">
+    <div class="col-sm-5">
+        <form th:action="@{/sendBook/}" enctype="multipart/form-data" th:object="${book}" th:method="POST">
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input type="text" class="form-control" id="Title" aria-describedby="emailHelp"
+                       placeholder="Enter title of book" th:field="*{title}">
+            </div>
+            <div class="form-group">
+                <label for="Authors">Authors</label>
+                <input type="text" class="form-control" id="Authors" placeholder="Authors of book"
+                       th:field="*{authors}">
+                <small id="AuthorsHelp" class="form-text text-muted">If this book has many authors, please write all
+                    here.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="book_category">Please choose book category</label>
+                <select class="form-control" id="book_category" th:field="*{categoryId}">
+                    <option th:each="category: ${categories}" th:value="${category.id}"
+                            th:text="${category.name}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Description">Description</label>
+                <textarea class="form-control" id="Description" rows="3" th:field="*{description}"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="Path">Path of book</label>
+                <input type="text" class="form-control" id="Path" placeholder="Path of book"
+                       th:field="*{path}">
+                <small id="PathHelp" class="form-text text-muted">Link of book.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="Image">Path of book</label>
+                <input type="file" class="form-control" id="Image" placeholder="Image of book" name="image">
+                <small id="ImageHelp" class="form-text text-muted">Image of book.</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
+<div th:replace="footer.html"></div>
